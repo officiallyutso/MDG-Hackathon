@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:login_signup/screens/signup_screen.dart';
 import 'package:login_signup/widgets/custom_scaffold.dart';
+import 'package:login_signup/screens/home_page.dart';
 
 import '../theme/theme.dart';
 
@@ -156,21 +157,16 @@ class _SignInScreenState extends State<SignInScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (_formSignInKey.currentState!.validate() &&
-                                rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Processing Data'),
-                                ),
-                              );
-                            } else if (!rememberPassword) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Please agree to the processing of personal data')),
-                              );
-                            }
+                            Navigator.pushNamed(context, '/homepage');
                           },
+                          //onPressed: () {
+                          //  Navigator.push(
+                          //    context,
+                          //    MaterialPageRoute(
+                          //      builder: (context) => HomePage(),
+                          //    ),
+                          //  );
+                          //},
                           child: const Text('Sign up'),
                         ),
                       ),
