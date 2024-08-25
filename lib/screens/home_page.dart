@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget{
@@ -12,112 +11,118 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1E163A),
-      appBar: AppBar(
-        backgroundColor: Color(0xFF1E163A),
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/pfp.jpeg'), // Add profile image
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF121212), Color(0xFF1C1C1E)], // Start and end colors for the gradient
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'IITIANS',
-                style: TextStyle(
+              SizedBox(height: 40),
+              AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Icon(
+                  Icons.menu,
                   color: Colors.white,
-                  fontSize: 20,
-                  letterSpacing: 1.5,
+                ),
+                title: Text(
+                  'Hi, Michael 👋',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
+              SizedBox(height: 20),
               Text(
-                'WELCOME..!',
+                'How may I help\nyou today?',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 20),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'assets/campus_image.png', // Add campus image
-                  height: 180,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'श्रमं विना न किमपि साध्यम्',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  'Announcements',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: 20),
               GridView.count(
-                shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
+                shrinkWrap: true,
                 children: [
                   buildGridTile(
                     context,
-                    'Calendar',
-                    'assets/calendar.png',
-                    CalendarPage(),
+                    'Talk with Bot',
+                    Icons.chat_bubble_outline,
+                    Color(0xFFB4FF39),
+                    TalkWithBotPage(),
                   ),
                   buildGridTile(
                     context,
-                    'Time Table',
-                    'assets/timetable.png',
-                    TimetablePage(),
+                    'Chat with Bot',
+                    Icons.chat,
+                    Color(0xFF9B8AFB),
+                    ChatWithBotPage(),
                   ),
                   buildGridTile(
                     context,
-                    'Resources',
-                    'assets/resources.png',
-                    ResourcesPage(),
-                  ),
-                  buildGridTile(
-                    context,
-                    'More...',
-                    'assets/more.png',
-                    MorePages(),
+                    'Search by Image',
+                    Icons.image_search,
+                    Color(0xFFFFA3C4),
+                    SearchByImagePage(),
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'History',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // Navigate to see all history
+                    },
+                    child: Text(
+                      'See all',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    buildHistoryTile(
+                      context,
+                      'I need some UI inspiration for dark themes.',
+                      Icons.lightbulb_outline,
+                      Color(0xFFB4FF39),
+                    ),
+                    buildHistoryTile(
+                      context,
+                      'Show me some color palettes for AI.',
+                      Icons.palette_outlined,
+                      Color(0xFF9B8AFB),
+                    ),
+                    buildHistoryTile(
+                      context,
+                      'What are the best mobile apps 2023?',
+                      Icons.apps_outlined,
+                      Color(0xFFFFA3C4),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -125,7 +130,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildGridTile(BuildContext context, String title, String imagePath, Widget page) {
+  Widget buildGridTile(BuildContext context, String title, IconData icon, Color color, Widget page) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -135,86 +140,108 @@ class _HomePageState extends State<HomePage> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0xFF008B8B),
-          borderRadius: BorderRadius.circular(10),
+          color: color,
+          borderRadius: BorderRadius.circular(15),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              height: 60,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(height: 10),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                icon,
+                color: Colors.black,
+                size: 28,
               ),
-            ),
-          ],
+              Spacer(),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  Widget buildHistoryTile(BuildContext context, String title, IconData icon, Color color) {
+    return ListTile(
+      leading: Container(
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+        ),
+        padding: EdgeInsets.all(10),
+        child: Icon(
+          icon,
+          color: Colors.black,
+        ),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.white),
+      ),
+      trailing: Icon(
+        Icons.more_vert,
+        color: Colors.grey,
+      ),
+      onTap: () {
+        // Handle history tile tap
+      },
+    );
+  }
 }
 
-class CalendarPage extends StatelessWidget {
+class TalkWithBotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: Text('Talk with Bot'),
       ),
       body: Center(
-        child: Text('Calendar Page'),
+        child: Text('Talk with Bot Page'),
       ),
     );
   }
 }
 
-class TimetablePage extends StatelessWidget {
+class ChatWithBotPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Table'),
+        title: Text('Chat with Bot'),
       ),
       body: Center(
-        child: Text('Time Table Page'),
+        child: Text('Chat with Bot Page'),
       ),
     );
   }
 }
 
-class ResourcesPage extends StatelessWidget {
+class SearchByImagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Resources'),
+        title: Text('Search by Image'),
       ),
       body: Center(
-        child: Text('Resources Page'),
+        child: Text('Search by Image Page'),
       ),
     );
   }
 }
-
-class MorePages extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('More'),
-      ),
-      body: Center(
-        child: Text('More Page'),
-      ),
-    );
-  }
-}
-
