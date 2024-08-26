@@ -69,10 +69,10 @@ Here are some screenshots of the app in action:
 
 This project was developed by:
 
-- **Utso Sarkar**
-- **Arya Talera**
-- **Anee Jain**
-- **Amitesh Sawoni**
+- **Utso Sarkar** (utso_s@ma.iitr.ac.in)
+- **Arya Talera** (talera_a@ma.iitr.ac.in)
+- **Anee Jain** (anee_j@ma.iitr.ac.in)
+- **Amitesh Sonwani** (amitesh_s@ma.iitr.ac.in)
 
 ---
 
