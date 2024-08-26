@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "690259791245",
+    "project_id": "crapp-792f6",
+    "storage_bucket": "crapp-792f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690259791245:android:51133abd7244632cc541c4",
+        "android_client_info": {
+          "package_name": "com.example.login_signup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbF_yJR-P8OnLJPRhpZPb1U05xNo_Q3qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
